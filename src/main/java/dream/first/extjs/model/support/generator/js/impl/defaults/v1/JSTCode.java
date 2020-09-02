@@ -1,4 +1,4 @@
-package dream.first.extjs.model.support.generator.js.impl.defaults;
+package dream.first.extjs.model.support.generator.js.impl.defaults.v1;
 
 import java.util.HashMap;
 import java.util.Map;

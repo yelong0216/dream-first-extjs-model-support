@@ -3,8 +3,6 @@
  */
 package dream.first.extjs.model.support.test.generator.js;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,23 +11,21 @@ import org.yelong.commons.io.FileUtilsE;
 import org.yelong.commons.util.ListUtilsE;
 import org.yelong.core.model.support.generator.GFieldAndColumnWrapper;
 import org.yelong.core.model.support.generator.GModelAndTable;
-import org.yelong.core.model.support.generator.ModelGenerateException;
 import org.yelong.core.model.support.generator.pdm.PDMResolverException;
 import org.yelong.core.model.support.generator.support.ModelGenerateSupport;
 
-import dream.first.extjs.model.support.generator.js.ExtjsGenerateException;
-import dream.first.extjs.model.support.generator.js.ExtjsGenerator;
-import dream.first.extjs.model.support.generator.js.impl.defaults.DefaultExtjsGenerator;
-import dream.first.extjs.model.support.generator.js.impl.defaults._2.DefaultExtjsGenerator2;
+import dream.first.extjs.model.support.generator.js.ExtJSGenerator;
+import dream.first.extjs.model.support.generator.js.impl.defaults.v1.DefaultExtJSGenerator_v1;
+import dream.first.extjs.model.support.generator.js.impl.defaults.v2.DefaultExtJSGenerator_v2;
 
 /**
  *
  */
 public class ExtjsGeneratorTest {
 
-	public static ExtjsGenerator extjsGenerator = new DefaultExtjsGenerator();
+	public static ExtJSGenerator extjsGenerator = new DefaultExtJSGenerator_v1();
 
-	public static ExtjsGenerator extjsGenerator2 = new DefaultExtjsGenerator2();
+	public static ExtJSGenerator extjsGenerator2 = new DefaultExtJSGenerator_v2();
 
 	private static final List<String> IGNORE_FIELD_NAME = new ArrayList<>();
 
@@ -62,14 +58,14 @@ public class ExtjsGeneratorTest {
 	}
 
 	@Test
-	public void generateModle() throws FileNotFoundException, PDMResolverException, ModelGenerateException {
+	public void generateModle() throws Exception {
 		ModelGenerateSupport.generatePOJOModel(
 				"F:\\developer\\PowerDesigner\\数模\\model-generate-test\\generate-test.pdm",
 				"F:\\developer\\PowerDesigner\\数模\\model-generate-test");
 	}
 
 	@Test
-	public void generate() throws PDMResolverException, ExtjsGenerateException, IOException {
+	public void generate() throws Exception {
 		List<GModelAndTable> modelAndTables = ModelGenerateSupport.pdmResolver.resolve(
 				FileUtilsE.getFile("F:\\developer\\PowerDesigner\\数模\\model-generate-test\\generate-test.pdm"));
 		for (GModelAndTable gModelAndTable : modelAndTables) {

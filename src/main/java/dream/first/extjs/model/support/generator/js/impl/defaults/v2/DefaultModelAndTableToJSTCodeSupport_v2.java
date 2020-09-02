@@ -1,4 +1,4 @@
-package dream.first.extjs.model.support.generator.js.impl.defaults._2;
+package dream.first.extjs.model.support.generator.js.impl.defaults.v2;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -12,13 +12,13 @@ import org.yelong.core.model.manage.FieldAndColumnType;
 import org.yelong.core.model.manage.ModelAndTable;
 import org.yelong.core.model.support.generator.GModelAndTable;
 
-import dream.first.extjs.model.support.generator.js.impl.defaults.JSTCode;
-import dream.first.extjs.model.support.generator.js.impl.defaults.ModelAndTableToJSTCodeSupport;
+import dream.first.extjs.model.support.generator.js.impl.defaults.v1.JSTCode;
+import dream.first.extjs.model.support.generator.js.impl.defaults.v1.ModelAndTableToJSTCodeSupport;
 
 /**
  * @since 2.0
  */
-public class DefaultModelAndTableToJSTCodeSupport2 implements ModelAndTableToJSTCodeSupport {
+public class DefaultModelAndTableToJSTCodeSupport_v2 implements ModelAndTableToJSTCodeSupport {
 
 	@Override
 	public JSTCode toJSTCode(GModelAndTable modelAndTable) {
@@ -192,8 +192,8 @@ public class DefaultModelAndTableToJSTCodeSupport2 implements ModelAndTableToJST
 		formFieldAttributes.put("beforeLabelTextTpl", "pointer");
 		formFieldAttributes.put("labelWidth", 100);
 
-		formFieldAttributes.put("allowBlank", fieldAndColumn.isAllowBlank());
-		if (!fieldAndColumn.isAllowBlank()) {
+		formFieldAttributes.put("allowBlank", fieldAndColumn.isAllowNull());
+		if (!fieldAndColumn.isAllowNull()) {
 			formFieldAttributes.put("blankText", wdqm(fieldLabel + "为必填项！"));
 		}
 		formFieldAttributes.put("editable", true);

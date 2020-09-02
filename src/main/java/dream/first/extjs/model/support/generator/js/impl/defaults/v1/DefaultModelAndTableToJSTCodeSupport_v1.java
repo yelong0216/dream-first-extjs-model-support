@@ -1,18 +1,19 @@
 /**
  * 
  */
-package dream.first.extjs.model.support.generator.js.impl.defaults;
+package dream.first.extjs.model.support.generator.js.impl.defaults.v1;
 
 import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.yelong.core.model.manage.FieldAndColumn;
 import org.yelong.core.model.support.generator.GModelAndTable;
 
 /**
  * @since 2.0
  */
-public class DefaultModelAndTableToJSTCodeSupport implements ModelAndTableToJSTCodeSupport {
+public class DefaultModelAndTableToJSTCodeSupport_v1 implements ModelAndTableToJSTCodeSupport {
 
 	@Override
 	public JSTCode toJSTCode(GModelAndTable modelAndTable) {
@@ -38,9 +39,12 @@ public class DefaultModelAndTableToJSTCodeSupport implements ModelAndTableToJSTC
 		int columnWidth = 1000 / useableColumnCount;
 		for (FieldAndColumn fieldAndColumn : modelAndTable.getFieldAndColumns()) {
 			classFields.append("\"" + fieldAndColumn.getFieldName() + "\",");
-			gridColumns.append("\n\t\t{header : \"" + fieldAndColumn.getColumnName() + "\", dataIndex : \""
-					+ fieldAndColumn.getFieldName() + "\", width : " + columnWidth + ", hidden : "
-					+ fieldAndColumn.isPrimaryKey());
+			String header = fieldAndColumn.getColumnName();
+			if(StringUtils.isBlank(header)) {
+				header = fieldAndColumn.getColumn();
+			}
+			gridColumns.append("\n\t\t{header : \"" + header + "\", dataIndex : \"" + fieldAndColumn.getFieldName()
+					+ "\", width : " + columnWidth + ", hidden : " + fieldAndColumn.isPrimaryKey());
 			gridColumns.append("},");
 		}
 		classFields.deleteCharAt(classFields.length() - 1);
@@ -117,8 +121,8 @@ public class DefaultModelAndTableToJSTCodeSupport implements ModelAndTableToJSTC
 		formField.append("\n" + tab + "id : \"" + fieldAndColumn.getFieldName() + "\",");
 		formField.append("\n" + tab + "name : \"model." + fieldAndColumn.getFieldName() + "\",");
 		formField.append("\n" + tab + "fieldLabel : \"" + fieldLabel + "\",");
-		formField.append("\n" + tab + "allowBlank : " + fieldAndColumn.isAllowBlank() + ",");
-		if (!fieldAndColumn.isAllowBlank()) {
+		formField.append("\n" + tab + "allowBlank : " + fieldAndColumn.isAllowNull() + ",");
+		if (!fieldAndColumn.isAllowNull()) {
 			formField.append("\n" + tab + "blankText : \"" + fieldLabel + "为必填项！\",");
 		}
 		formField.append("\n" + tab + "editable : true,");// 可编辑

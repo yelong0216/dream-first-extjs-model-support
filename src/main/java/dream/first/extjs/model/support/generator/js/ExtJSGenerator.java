@@ -1,13 +1,13 @@
 /**
  * 
  */
-package dream.first.extjs.model.support.generator.jsp;
+package dream.first.extjs.model.support.generator.js;
 
 import org.yelong.core.model.support.generator.ModelComponentGenerator;
 
 /**
  * @since 2.0
  */
-public interface JSPGenerator extends ModelComponentGenerator {
+public interface ExtJSGenerator extends ModelComponentGenerator {
 
 }

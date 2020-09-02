@@ -9,7 +9,9 @@ var API = {
 		save${code.className} : rootPath + "${code.classNameActionInvocation}/save",
 		query${code.className} : rootPath + "${code.classNameActionInvocation}/query",
 		delete${code.className} : rootPath + "${code.classNameActionInvocation}/delete",
-		retrieve${code.className} : rootPath + "${code.classNameActionInvocation}/retrieve"
+		retrieve${code.className} : rootPath + "${code.classNameActionInvocation}/retrieve",
+		download${code.className} : rootPath + "${code.classNameActionInvocation}/download",
+		exist${code.className} : rootPath + "${code.classNameActionInvocation}/existFile",
 	};
 
 var ${code.classNameLowerPrefix}Grid;
@@ -46,13 +48,15 @@ Ext.onReady(function() {
 	
 	var ${code.classNameLowerPrefix}Columns = [
 		${code.gridColumns},
-		{header : "操作", dataIndex : "", width : 100,align : "center", hidden : false,renderer : function(v,obj){
+		{header : "操作", dataIndex : "", width : 150,align : "center", hidden : false,renderer : function(v,obj){
 			var record = obj.record;
 			var id = record.data.id;
 			var operator = "";
 			operator += "<span style='cursor:pointer;color: blue;' onclick='edit${code.className}(\""+id+"\")'>修改</span>";
 			operator += "&nbsp;&nbsp;&nbsp;";
 			operator += "<span style='cursor:pointer;color: blue;' onclick='delete${code.className}(\""+id+"\")'>删除</span>";
+			operator += "&nbsp;&nbsp;&nbsp;";
+			operator += "<span style='cursor:pointer;color: blue;' onclick='download${code.className}(\""+id+"\")'>下载</span>";
 			return operator;
 		}},
 	];
@@ -128,3 +132,19 @@ function delete${code.className}(modelId) {
 		});
 	}
 }
+
+function download${code.className}(modelId){
+	Co.request(API.exist${code.className}, {"model.id" : modelId}, function(result, opts) {
+		if (true === result.success) {
+			if( result.existFile == true ){
+				window.open(API.download${code.className}+"?model.id="+modelId);
+//				window.location = downloadUrl+"?model.id=" + id;
+			} else {
+				Co.showError("文件不存在！");
+			}
+		} else {
+			Co.showError(result.msg);
+		}
+	});
+}
+

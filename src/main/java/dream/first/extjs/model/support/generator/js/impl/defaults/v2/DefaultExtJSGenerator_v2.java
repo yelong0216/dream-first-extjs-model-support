@@ -1,0 +1,48 @@
+/**
+ * 
+ */
+package dream.first.extjs.model.support.generator.js.impl.defaults.v2;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.yelong.core.model.support.generator.impl.AbstractModelComponentGenerator;
+import org.yelong.core.model.support.generator.impl.pojo.TModel;
+import org.yelong.support.freemarker.FreeMarkerConfigurationFactory;
+
+import dream.first.extjs.model.support.generator.js.ExtJSGenerator;
+import dream.first.extjs.model.support.generator.js.impl.defaults.v1.JSTCode;
+import dream.first.extjs.model.support.generator.js.impl.defaults.v1.ModelAndTableToJSTCodeSupport;
+import freemarker.template.Configuration;
+import freemarker.template.Template;
+
+/**
+ * @since 2.0
+ */
+public class DefaultExtJSGenerator_v2 extends AbstractModelComponentGenerator implements ExtJSGenerator {
+
+	private static Configuration freemarkerConfiguration = FreeMarkerConfigurationFactory
+			.createConfigurationByClass(DefaultExtJSGenerator_v2.class);
+
+	private static final String FTL_NAME = "js.ftl";
+
+	protected ModelAndTableToJSTCodeSupport modelAndTableToJSTCodeSupport = new DefaultModelAndTableToJSTCodeSupport_v2();
+
+	@Override
+	protected Map<String, Object> buildTemplateParams(TModel tModel) {
+		JSTCode code = modelAndTableToJSTCodeSupport.toJSTCode(tModel.getgModelAndTable());
+		Map<String, Object> root = new HashMap<>();
+		root.put("code", code);
+		return root;
+	}
+
+	@Override
+	protected Template getTemplate() throws Exception {
+		return freemarkerConfiguration.getTemplate(FTL_NAME, "UTF-8");
+	}
+
+	public void setModelAndTableToJSTCodeSupport(ModelAndTableToJSTCodeSupport modelAndTableToJSTCodeSupport) {
+		this.modelAndTableToJSTCodeSupport = modelAndTableToJSTCodeSupport;
+	}
+
+}

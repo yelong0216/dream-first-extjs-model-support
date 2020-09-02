@@ -4,8 +4,8 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.github.yelong0216.dream.first</groupId>
 	<artifactId>dream-first-extjs-model-support</artifactId>
-	<version>2.0.0</version>
-	<name>dream-first-core</name>
+	<version>2.1.0</version>
+	<name>dream-first-extjs-model-support</name>
 	<description>extjs.js和jsp文件的生成器支持</description>
 	<url>https://github.com/yelong0216/dream-first-extjs-model-support.git</url>
 	<licenses>
@@ -16,8 +16,8 @@
 	</licenses>
 	<developers>
 		<developer>
-			<name>彭飞</name>
-			<email>17601085125@163.com</email>
+			<name>yelong</name>
+			<email>yelong010216@163.com</email>
 		</developer>
 	</developers>
 	<scm>
@@ -25,13 +25,13 @@
 	</scm>
 	<properties>
 		<maven.test.skip>true</maven.test.skip>
-		<yelong-core.version>[2.0.0,2.1.0)</yelong-core.version>
+		<yelong-model-support.version>[2.1.0,2.2.0)</yelong-model-support.version>
 	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>com.github.yelong0216</groupId>
 			<artifactId>yelong-model-support</artifactId>
-			<version>${yelong-core.version}</version>
+			<version>${yelong-model-support.version}</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api -->
 		<dependency>
@@ -45,6 +45,33 @@
 		<profile>
 			<id>release</id>
 			<build>
+				<resources>
+					<!-- 表示把java目录下的有关xml文件,properties文件编译/打包的时候放在resource目录下 -->
+					<resource>
+						<directory>src/main/java</directory>
+						<includes>
+							<include>**/*.properties</include>
+							<include>**/*.xml</include>
+							<include>**/*.tld</include>
+							<include>**/*.yml</include>
+							<include>**/*.ftl</include>
+							<include>**/*.factories</include>
+						</includes>
+						<filtering>false</filtering>
+					</resource>
+					<resource>
+						<directory>src/main/resources</directory>
+						<includes>
+							<include>**/*.properties</include>
+							<include>**/*.xml</include>
+							<include>**/*.tld</include>
+							<include>**/*.yml</include>
+							<include>**/*.ftl</include>
+							<include>**/*.factories</include>
+						</includes>
+						<filtering>false</filtering>
+					</resource>
+				</resources>
 				<plugins>
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
