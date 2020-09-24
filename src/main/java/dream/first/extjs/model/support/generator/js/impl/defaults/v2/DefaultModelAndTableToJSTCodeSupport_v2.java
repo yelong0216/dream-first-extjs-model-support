@@ -189,11 +189,10 @@ public class DefaultModelAndTableToJSTCodeSupport_v2 implements ModelAndTableToJ
 		formFieldAttributes.put("id", wdqm(fieldAndColumn.getFieldName()));
 		formFieldAttributes.put("name", wdqm("model." + fieldAndColumn.getFieldName()));
 		formFieldAttributes.put("fieldLabel", wdqm(fieldLabel));
-		formFieldAttributes.put("beforeLabelTextTpl", "pointer");
 		formFieldAttributes.put("labelWidth", 100);
-
 		formFieldAttributes.put("allowBlank", fieldAndColumn.isAllowNull());
 		if (!fieldAndColumn.isAllowNull()) {
+			formFieldAttributes.put("beforeLabelTextTpl", "pointer");
 			formFieldAttributes.put("blankText", wdqm(fieldLabel + "为必填项！"));
 		}
 		formFieldAttributes.put("editable", true);

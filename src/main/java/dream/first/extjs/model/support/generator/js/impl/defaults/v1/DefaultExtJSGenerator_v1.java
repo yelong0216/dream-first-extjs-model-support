@@ -31,7 +31,7 @@ public class DefaultExtJSGenerator_v1 extends AbstractModelComponentGenerator im
 		JSTCode code = modelAndTableToJSTCodeSupport.toJSTCode(tModel.getgModelAndTable());
 		Map<String, Object> root = new HashMap<>();
 		root.put("code", code);
-		return super.buildTemplateParams(tModel);
+		return root;
 	}
 
 	@Override

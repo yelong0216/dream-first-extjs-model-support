@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.github.yelong0216.dream.first</groupId>
 	<artifactId>dream-first-extjs-model-support</artifactId>
-	<version>2.1.0</version>
+	<version>2.1.1</version>
 	<name>dream-first-extjs-model-support</name>
 	<description>extjs.js和jsp文件的生成器支持</description>
 	<url>https://github.com/yelong0216/dream-first-extjs-model-support.git</url>
